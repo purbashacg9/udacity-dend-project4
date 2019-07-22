@@ -71,6 +71,7 @@ def process_log_data(spark, input_data, output_data):
 
     # extract columns for users table    
     users_table = dflogs.select((dflogs.userId).alias("user_id"), (dflogs.firstName).alias("first_name"), (dflogs.lastName).alias("last_name"),dflogs.gender, dflogs.level)
+    users_table = users_table.distinct() 
 
     # write users table to parquet files
     output_path = os.path.join(output_data, 'users_table')
